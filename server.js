@@ -17,26 +17,32 @@ const databasesRoute = require('./src/routes/database');
 // initialize app
 const app = express();
 
+// app router
+const router = express.Router()
+
 // serve static files form public
-app.use(express.static('public'));
+router.use(express.static('public'));
 
 // process gzipped static files
-app.use(gzipProcessor(__dirname + '/public'));
+router.use(gzipProcessor(__dirname + '/public'));
 
 // enables cors
-app.use(cors());
+router.use(cors());
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
+router.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
-app.use(bodyParser.json({ limit: process.env.BODY_SIZE || '50mb' }));
+router.use(bodyParser.json({ limit: process.env.BODY_SIZE || '50mb' }));
 
 // api routing
-app.use('/databases', databasesRoute);
+router.use('/databases', databasesRoute);
 
 // serve home page
-app.get('/', (req, res) => res.sendFile(__dirname + '/public/index.html'));
+router.get('/', (req, res) => res.sendFile(__dirname + '/public/index.html'));
+
+// use the router
+app.use('/mongo-gui', router);
 
 // connect to database
 dataAccessAdapter.InitDB(app);
@@ -45,7 +51,7 @@ dataAccessAdapter.InitDB(app);
 app.once('connectedToDB', () => {
   const port = argv.p || process.env.PORT || 4321;
   app.listen(port, () => {
-    console.log(`> Access Mongo GUI at http://localhost:${port}`);
+    console.log(`> Access Mongo GUI at http://localhost:${port}/mongo-gui`);
   });
 });
 

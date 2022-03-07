@@ -4,13 +4,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --base-href='/mongo-gui/'",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "clean": "rm -rf dist && rm -rf ../public",
     "compress": "npx gzipper compress ./dist ../public",
-    "build:prod": "ng build --prod",
+    "build:prod": "ng build --prod --base-href='/mongo-gui/'",
     "clean-build-compress": "npm run clean && npm run build:prod && npm run compress"
   },
   "private": true,
