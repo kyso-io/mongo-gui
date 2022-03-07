@@ -1,0 +1,2 @@
+# SERVICE_IMG=registry.kyso.io/docker/node-service
+SERVICE_TAG=16.14.0-alpine3.15

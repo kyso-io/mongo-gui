@@ -1,0 +1,9 @@
+include:
+  - project: 'common/gitlab-ci'
+    ref: v0.4.13
+    file: '/templates/npm-dockerfile-build.yml'
+
+variables:
+  DOCKER_BUILDKIT: 1
+  CODE_QUALITY_DISABLED: "true"
+  SAST_DISABLED: "true"

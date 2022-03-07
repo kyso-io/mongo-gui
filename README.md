@@ -5,6 +5,10 @@
 #  Mongo GUI
 A web-based MongoDB graphical user interface.
 
+## IMPORTANT NOTE
+
+This branch has been modified for Kyso!
+
 ## Demo
 Read-only demo: https://mongo-gui.herokuapp.com/
 
